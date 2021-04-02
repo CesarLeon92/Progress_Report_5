@@ -39,6 +39,26 @@ public class SpawnSample : MonoBehaviour
         direction.x = -1 * direction.x;
     }
 
+    private void OnTrigger(Collider collision)
+    {
+        if(collision.tag == "Portal")
+        {
+            GameManager.Score++;
+            Destroy(gameObject);
+
+        }
+    }
+
+    private void OnCollissionEnter(COllision2D col)
+    {
+        if(col.gameObject.tag == "Object")
+        {
+            Physics2D.IgnoreCollision(col.collider);
+        }
+        if (col.gameObjet.tag == "Block")
+            NextFlip(); 
+    }
+
     public void GetBlock()
     {
         gameObjectBlock = tag = "Object";
